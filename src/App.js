@@ -1,57 +1,65 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import Navbar from './components/Navbar';
+import { Routes, Route } from 'react-router-dom';
+import ColorPaletteContext from './pages/colorPaletteContext';
+import ColorPaletteReact from './pages/colorPaletteReact';
+import UserWithoutDedupe from './pages/userWithoutDedupe';
+import UserWithDedupe from './pages/userWithDedupe';
+import UserWithRaceCondition from './pages/userWithRaceCondition';
+import ColorPaletteRedux from './pages/colorPaletteRedux';
+import ColorPaletteRecoil from './pages/colorPaletteRecoil';
+import { CountProvider } from './pages/colorPaletteContext/counterContext';
+// import { RecoilRoot } from 'recoil';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path="/user-without-dedupe" element={<UserWithoutDedupe />} />
+
+          <Route path="/user-with-dedupe" element={<UserWithDedupe />} />
+
+          <Route
+            path="/user-with-race-condition"
+            element={<UserWithRaceCondition />}
+          />
+
+          <Route path="/react" element={<ColorPaletteReact />} />
+
+          <Route
+            path="/redux"
+            element={
+              <Provider store={store}>
+                <ColorPaletteRedux />
+              </Provider>
+            }
+          />
+
+          <Route
+            path="/context"
+            element={
+              <CountProvider>
+                <ColorPaletteContext />
+              </CountProvider>
+            }
+          />
+          <Route
+            path="/recoil"
+            element={
+              // <RecoilRoot>
+              <ColorPaletteRecoil />
+              // </RecoilRoot>
+            }
+          />
+          <Route path="/" element={<h1>Home</h1>} />
+        </Routes>
+      </div>
+    </>
   );
 }
 

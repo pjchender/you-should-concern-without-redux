@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import 'bootstrap';
+import './index.scss';
 import App from './App';
-import { store } from './app/store';
-import { Provider } from 'react-redux';
+import { RecoilRoot } from 'recoil';
+
+import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
+  <BrowserRouter>
+    <RecoilRoot>
       <App />
-    </Provider>
-  </React.StrictMode>,
+    </RecoilRoot>
+  </BrowserRouter>,
+
   document.getElementById('root')
 );
 
