@@ -18,6 +18,9 @@
     "recoil": "^0.5.2",
     "swr": "^1.0.1"
   },
+  "devDependencies": {
+    "sass-loader": "^12.3.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
